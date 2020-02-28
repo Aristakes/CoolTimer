@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="pref_timer_melody_labels">
+
+        <item>ZakrivayuGlaza</item>
+        <item>Origami</item>
+        <item>MasterMargarita</item>
+
+    </array>
+
+    <array name="pref_timer_melody_values">
+
+        <item>zakrivayu_glaza</item>
+        <item>origami</item>
+        <item>master_margarita</item>
+
+    </array>
+
+</resources>
