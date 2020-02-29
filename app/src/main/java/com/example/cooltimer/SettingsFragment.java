@@ -2,6 +2,7 @@ package com.example.cooltimer;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.preference.CheckBoxPreference;
@@ -12,7 +13,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 
 public class SettingsFragment extends PreferenceFragmentCompat
-        implements SharedPreferences.OnSharedPreferenceChangeListener {
+        implements SharedPreferences.OnSharedPreferenceChangeListener,Preference.OnPreferenceChangeListener {
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -33,6 +34,9 @@ public class SettingsFragment extends PreferenceFragmentCompat
                 setPreferenceLabel(preference , value);
             }
         }
+
+        Preference preference = findPreference("default_interval");
+        preference.setOnPreferenceChangeListener(this);
 
     }
 
@@ -67,5 +71,26 @@ public class SettingsFragment extends PreferenceFragmentCompat
     public void onDestroy() {
         super.onDestroy();
         getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object o) {
+
+        Toast toast = Toast.makeText(getContext() , "Please enter Integer number" , Toast.LENGTH_LONG);
+
+        if(preference.getKey().equals("default_interval")){
+            String defaultIntervalString = (String) o;
+
+            try{
+                int defaultInterval = Integer.parseInt(defaultIntervalString);
+
+            }catch (Exception e){
+                toast.show();
+                return false;
+            }
+
+        }
+
+        return true;
     }
 }
